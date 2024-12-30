@@ -36,4 +36,32 @@ url_shortener/
 
     │       └── index.html   # Main page template
 
+
+
+
+
+## How to Run the Project
+
+1. Install Flask:
+
+```bash
+
+pip install flask
+
+```
+
+  
+
+2. Run the application:
+
+```bash
+
+python run.py
+
+```
+
+  
+
+3. Open http://localhost:5000 in your browser
+
     └── run.py              # Application entry point
