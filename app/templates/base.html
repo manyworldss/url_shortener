@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
+
+        :root {
+            --gold: #FFD700;
+            --gold-hover: #F7CE00;
+            --black: #111111;
+            --dark-gray: #1A1A1A;
+            --text: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--black);
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            color: var(--text);
+            line-height: 1.5;
+            padding: 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--dark-gray);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: conic-gradient(from 0deg, transparent, var(--gold), transparent);
+            border-radius: 50%;
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: var(--dark-gray);
+            border-radius: 50%;
+        }
+
+        .logo i {
+            color: var(--gold);
+            font-size: 24px;
+            z-index: 1;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        input[type="url"] {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 12px;
+            font-size: 1rem;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        input[type="url"]:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.1);
+        }
+
+        input[type="url"]::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gold);
+            pointer-events: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            background: var(--gold-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(255, 215, 0, 0.2);
+        }
+
+        .result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            position: relative;
+        }
+
+        .result::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--gold);
+            border-radius: 4px 0 0 4px;
+        }
+
+        .result-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .result-label i {
+            color: var(--gold);
+        }
+
+        .shortened-url {
+            color: var(--gold);
+            font-weight: 500;
+            word-break: break-all;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .shortened-url:hover {
+            color: var(--gold-hover);
+        }
+
+        .copy-btn {
+            background: rgba(255, 215, 0, 0.1);
+            color: var(--gold);
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 215, 0, 0.15);
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-link"></i>
+        </div>
+        <h1>URL Shortener</h1>
+        <p class="subtitle">Transform your long URLs into elegant short links</p>
+
+        <div class="input-group">
+            <i class="fas fa-globe"></i>
+            <input 
+                type="url" 
+                placeholder="Paste your long URL here"
+                autocomplete="off"
+            >
+        </div>
+        <button>
+            Shorten URL
+        </button>
+
+        <div class="result">
+            <p class="result-label">
+                <i class="fas fa-check-circle"></i>
+                Your shortened URL is ready!
+            </p>
+            <a href="#" class="shortened-url">
+                https://short.url/abc123
+            </a>
+            <button class="copy-btn">
+                <i class="fas fa-copy"></i>
+                Copy to clipboard
+            </button>
+        </div>
+    </div>
+</body>
+</html>

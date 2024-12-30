@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>URL Shortener</h1>
+    <form method="POST">
+        <input type="url" name="url" placeholder="Enter your URL here..." required>
+        <button type="submit">Shorten URL</button>
+    </form>
+
+    {% if short_url %}
+    <div class="result">
+        <p>Your shortened URL:</p>
+        <a href="{{ short_url }}" class="shortened-url" target="_blank">{{ short_url }}</a>
+    </div>
+    {% endif %}
+
+    {% if error %}
+    <div class="result">
+        <p style="color: red;">{{ error }}</p>
+    </div>
+    {% endif %}
+{% endblock %}
