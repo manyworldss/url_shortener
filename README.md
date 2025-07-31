@@ -1,67 +1,51 @@
-Overview
+# Flask URL Shortener
 
-This is a Flask-based URL shortener that demonstrates fundamental web development concepts including:
+This one’s simple on purpose. It takes a long URL, gives you back a short one, and redirects it. That’s it.
 
-- HTTP methods (GET/POST)
+I built it to practice web fundamentals: routing, form handling, HTTP methods, and templates — without hiding behind a bunch of frameworks or JavaScript. Just Flask, logic, and clean design.
 
-- Form handling
+---
 
-- URL routing
+### 🧠 What It Teaches
 
-- Data storage (in-memory)
+- How GET and POST requests actually work
+- How to handle and validate forms without a library
+- Clean URL routing and redirect logic
+- Reusable HTML templates with Jinja
+- Light UI decisions that still feel good to use
 
-- Basic error handling
+---
 
-- Template inheritance
-
-- Responsive web design
-
-  
-
-## Project Structure
-
-```
+### 🗂 Project Structure
 
 url_shortener/
-
-    ├── app/                  # Main application package
-
-    │   ├── __init__.py      # Flask application initialization
-
-    │   ├── routes.py        # URL routing and business logic
-
-    │   └── templates/       # HTML templates
-
-    │       ├── base.html    # Base template with shared layout
-
-    │       └── index.html   # Main page template
+├── app/
+│ ├── init.py # Flask app setup
+│ ├── routes.py # core logic
+│ └── templates/
+│ ├── base.html # layout
+│ └── index.html # input form
+└── run.py # app entry point
 
 
+---
 
+### 🖼 UI Snapshot
 
+![Screenshot of the UI](./7774a6e1-880d-4f32-855d-96c1f5ee847a.png)
 
-## How to Run the Project
+Simple interface. Clear purpose. No distractions.
 
-1. Install Flask:
+---
 
-```bash
+### 🧩 Why This Matters
 
-pip install flask
+I wanted to stay close to the logic. Get a better feel for the data flow and the little things that make a basic app usable. I focused on clarity — in both the code and the UI. This was about fluency, not flash.
 
-```
+---
 
-  
+### Made by
 
-2. Run the application:
-
-```bash
-
-python run.py
-
-```
-
-  
-
-3. Open http://localhost:5000 in your browser
-
-    └── run.py              # Application entry point
+Rapheal Suber  
+Psych + UX Research @ Oregon State  
+Backend builder with a people-first approach
