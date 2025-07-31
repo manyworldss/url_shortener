@@ -32,7 +32,7 @@ url_shortener/
 
 ### 🖼 UI Snapshot
 
-![Screenshot of the UI] 
+
 
 <img width="1808" height="895" alt="Screenshot 2025-07-31 191918" src="https://github.com/user-attachments/assets/01c00890-2dd9-4366-b9c8-833d1cf6b6a7" />
 
