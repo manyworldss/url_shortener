@@ -6,7 +6,7 @@ I built it to practice web fundamentals: routing, form handling, HTTP methods, a
 
 ---
 
-### 🧠 What It Teaches
+### What It Teaches
 
 - How GET and POST requests actually work
 - How to handle and validate forms without a library
@@ -16,7 +16,7 @@ I built it to practice web fundamentals: routing, form handling, HTTP methods, a
 
 ---
 
-### 🗂 Project Structure
+### Project Structure
 
 url_shortener/
 ├── app/
@@ -30,7 +30,7 @@ url_shortener/
 
 ---
 
-### 🖼 UI Snapshot
+### UI Snapshot
 
 
 
